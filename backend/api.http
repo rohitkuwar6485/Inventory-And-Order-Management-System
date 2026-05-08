@@ -1,0 +1,121 @@
+### Create Product 1
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "sku": "LP1001",
+  "price": 50000,
+  "stock": 10
+}
+
+###
+
+### Create Product 2
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Mouse",
+  "sku": "MS1002",
+  "price": 1200,
+  "stock": 50
+}
+
+###
+
+### Create Product 3
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Keyboard",
+  "sku": "KB1003",
+  "price": 2500,
+  "stock": 30
+}
+
+### Create Product 4[All field required]
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Keyboard",
+  "sku": "KB1003"
+}
+
+###
+
+### Get All Products [Active Only]
+GET http://localhost:5000/api/products?active=true
+
+###
+
+### Get All Products [Inactive Only]
+GET http://localhost:5000/api/products?active=false
+
+### Get Single Product by ID
+GET http://localhost:5000/api/products/69fd5b666fe06b61baaa4f9d
+
+###
+
+### Update Product by ID
+PUT http://localhost:5000/api/products/69fd5b666fe06b61baaa4f9d
+Content-Type: application/json
+
+{
+  "name": "Gaming Laptop",
+  "sku": "KB1003",
+  "price": 65000,
+  "stock": 0
+}
+
+###
+
+### Deactivate Product by ID
+PATCH http://localhost:5000/api/products/69fd5b666fe06b61baaa4f9d/deactivate
+
+###
+
+### Order Creation
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{
+  "products": [
+    {
+      "product": "69fd58c650bd063d881f7591",
+      "quantity": 1
+    }
+  ]
+}
+
+### Get All Orders
+GET http://localhost:5000/api/orders
+
+### Get Single Order by ID
+GET http://localhost:5000/api/orders/69fd832e82e9877167873bd6
+
+### Update Order Status PENDING to COMPLETED
+PATCH http://localhost:5000/api/orders/69fd7ef7ab0aad602146142a/status
+Content-Type: application/json
+
+{
+  "status": "COMPLETED"
+}
+
+### Cancel Order
+PATCH http://localhost:5000/api/orders/69fd832e82e9877167873bd6/cancel
+
+### Authentication
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "rohit@gmail.com",
+  "password": "1234567"
+}
+
+### Protected Route Example 
+GET http://localhost:5000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmRlNmQ5YjA3ODAyMjMxMmQ4MDAzZSIsImlhdCI6MTc3ODI1MTQwNCwiZXhwIjoxNzc4ODU2MjA0fQ.kIu39GO87CSj33jMPY5tl7nKLGDSO-NE-qB-RTjQzEs
